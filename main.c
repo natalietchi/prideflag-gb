@@ -10,6 +10,7 @@
 #include "bi.h"
 #include "genderfluid.h"
 #include "pan.h"
+#include "pogo.h"
 
 
 const UWORD backgroundpalette[] =
@@ -23,26 +24,35 @@ const UWORD backgroundpalette[] =
     flagtilesCGBPal6c0, flagtilesCGBPal6c1, flagtilesCGBPal6c2, flagtilesCGBPal6c3,
     flagtilesCGBPal7c0, flagtilesCGBPal7c1, flagtilesCGBPal7c2, flagtilesCGBPal7c3,
 };
-// setup
+
 void checkInput();
 
-// main shit
 void main(){
 
-    // background setup
-    set_bkg_palette(0,7,&backgroundpalette[0]);
-    set_bkg_data(0,25,flagtiles);
+    // if device is not a gbc
+    if(_cpu == DMG_TYPE || _cpu == MGB_TYPE){
+        set_bkg_data(0,pogo_tile_count,pogo_tile_data);
+        set_bkg_tiles(0,0,20,18,pogo_map_data);
+        SHOW_BKG;
+    }
+    //if device is a gbc
+    if(_cpu == CGB_TYPE){
 
-    VBK_REG=1;
-    set_bkg_tiles(0,0,20,18, gayPLN1);
-    VBK_REG=0;
-    set_bkg_tiles(0,0,20,18, gayPLN0);
-
-    SHOW_BKG;
-    DISPLAY_ON;
     
-    while(1){
-        checkInput();
+        set_bkg_palette(0,7,&backgroundpalette[0]);
+         set_bkg_data(0,25,flagtiles);
+
+        VBK_REG=1;
+        set_bkg_tiles(0,0,20,18, gayPLN1);
+        VBK_REG=0;
+         set_bkg_tiles(0,0,20,18, gayPLN0);
+
+        SHOW_BKG;
+         DISPLAY_ON;
+    
+        while(1){
+            checkInput();
+         }
     }
 }
 
