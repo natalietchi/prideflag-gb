@@ -1,5 +1,5 @@
 # prideflag-gb
-a simple gameboy color homebrew that displays pride flags.
+a simple gameboy color homebrew that displays pride flags. requires [GBDK 2020](https://github.com/Zal0/gbdk-2020) to build.
 <img src=https://cdn.discordapp.com/attachments/668345694406574090/745156386924789790/O25yflpnFi.gif>
 # buttons
 up - rainbow/gay flag <br>
